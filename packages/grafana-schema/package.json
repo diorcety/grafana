@@ -40,7 +40,7 @@
     "@rollup/plugin-commonjs": "25.0.7",
     "@rollup/plugin-json": "6.1.0",
     "@rollup/plugin-node-resolve": "15.2.3",
-    "esbuild": "0.18.12",
+    "esbuild": "0.20.1",
     "glob": "^10.2.7",
     "rimraf": "5.0.5",
     "rollup": "2.79.1",
