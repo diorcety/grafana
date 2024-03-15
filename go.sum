@@ -1009,8 +1009,9 @@ github.com/digitalocean/godo v1.97.0 h1:p9w1yCcWMZcxFSLPToNGXA96WfUVLXqoHti6GzVo
 github.com/digitalocean/godo v1.97.0/go.mod h1:NRpFznZFvhHjBoqZAaOD3khVzsJ3EibzKqFL4R60dmA=
 github.com/dimchansky/utfbom v1.1.0/go.mod h1:rO41eb7gLfo8SF1jd9F8HplJm1Fewwi4mQvIirEdv+8=
 github.com/dimchansky/utfbom v1.1.1/go.mod h1:SxdoEBH5qIqFocHMyGOXVAybYJdr71b1Q/j0mACtrfE=
-github.com/diorcety/alerting v0.0.0-20240315101938-c36cf1207d36 h1:9izyNCafFCB5YxZCvpiZBMeT/QBA7/5BL8vMAYmaW0I=
-github.com/diorcety/alerting v0.0.0-20240315101938-c36cf1207d36/go.mod h1:wNM7x5TJ/id4dhvweCZivtzA3c8Njg2MPTbWsU6u+Xc=
+github.com/diorcety/alerting v0.0.0-20240315145237-4b115765411a h1:5Z7ROMwRkkFZWUn/v+PV3MuI3JA8AfUU9Lxy5SpOawg=
+github.com/diorcety/alerting v0.0.0-20240315145237-4b115765411a/go.mod h1:wNM7x5TJ/id4dhvweCZivtzA3c8Njg2MPTbWsU6u+Xc=
+github.com/diorcety/alerting v0.0.0-20240315153251-c8ed69f756db/go.mod h1:wNM7x5TJ/id4dhvweCZivtzA3c8Njg2MPTbWsU6u+Xc=
 github.com/dlmiddlecote/sqlstats v1.0.2 h1:gSU11YN23D/iY50A2zVYwgXgy072khatTsIW6UPjUtI=
 github.com/dlmiddlecote/sqlstats v1.0.2/go.mod h1:0CWaIh/Th+z2aI6Q9Jpfg/o21zmGxWhbByHgQSCUQvY=
 github.com/dnaeon/go-vcr v1.1.0/go.mod h1:M7tiix8f0r6mKKJ3Yq/kqU1OYf3MnfmBWVbPx/yU9ko=

@@ -496,6 +496,6 @@ replace xorm.io/xorm => ./pkg/util/xorm
 // This is required in order to get notification delivery errors from the receivers API.
 replace github.com/prometheus/alertmanager => github.com/grafana/prometheus-alertmanager v0.25.1-0.20231027171310-70c52bf65758
 
-replace github.com/grafana/alerting => github.com/diorcety/alerting v0.0.0-20240315101938-c36cf1207d36
+replace github.com/grafana/alerting => github.com/diorcety/alerting v0.0.0-20240315153251-c8ed69f756db
 
 exclude github.com/mattn/go-sqlite3 v2.0.3+incompatible

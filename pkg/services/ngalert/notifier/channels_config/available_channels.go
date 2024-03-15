@@ -276,6 +276,14 @@ func GetAvailableNotifiers() []*NotifierPlugin {
 					PropertyName: "subject",
 					Placeholder:  alertingTemplates.DefaultMessageTitleEmbed,
 				},
+				{ // New in X.X.
+					Label:        "Template",
+					Element:      ElementTypeInput,
+					InputType:    InputTypeText,
+					Description:  "Optional Template name to use",
+					PropertyName: "template",
+					Placeholder:  alertingTemplates.DefaultTemplate,
+				},
 			},
 		},
 		{
