@@ -40,7 +40,7 @@ validate-stable: spec-stable.json $(SWAGGER)
 validate: spec.json $(SWAGGER)
 	$(SWAGGER) validate $(<)
 
-swagger-codegen-api:
+swagger-codegen-api: post.json
 	docker run --rm -v $$(pwd):/local --user $$(id -u):$$(id -g) parsertongue/swagger-codegen-cli:3.0.32 generate \
 	-i /local/post.json \
 	-l go-server \

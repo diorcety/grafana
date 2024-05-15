@@ -131,7 +131,7 @@ func errorAlert(labels, annotations data.Labels, alertState *State, urlStr strin
 }
 
 func FromStateTransitionToPostableAlerts(firingStates []StateTransition, stateManager *Manager, appURL *url.URL) apimodels.PostableAlerts {
-	alerts := apimodels.PostableAlerts{PostableAlerts: make([]models.PostableAlert, 0, len(firingStates))}
+	var alerts apimodels.PostableAlerts
 	var sentAlerts []*State
 	ts := time.Now()
 
@@ -140,7 +140,7 @@ func FromStateTransitionToPostableAlerts(firingStates []StateTransition, stateMa
 			continue
 		}
 		alert := StateToPostableAlert(alertState.State, appURL)
-		alerts.PostableAlerts = append(alerts.PostableAlerts, *alert)
+		alerts = append(alerts, alert)
 		if alertState.StateReason == ngModels.StateReasonMissingSeries { // do not put stale state back to state manager
 			continue
 		}
@@ -154,7 +154,7 @@ func FromStateTransitionToPostableAlerts(firingStates []StateTransition, stateMa
 // FromAlertsStateToStoppedAlert selects only transitions from firing states (states eval.Alerting, eval.NoData, eval.Error)
 // and converts them to models.PostableAlert with EndsAt set to time.Now
 func FromAlertsStateToStoppedAlert(firingStates []StateTransition, appURL *url.URL, clock clock.Clock) apimodels.PostableAlerts {
-	alerts := apimodels.PostableAlerts{PostableAlerts: make([]models.PostableAlert, 0, len(firingStates))}
+	var alerts apimodels.PostableAlerts
 	ts := clock.Now()
 	for _, transition := range firingStates {
 		if transition.PreviousState == eval.Normal || transition.PreviousState == eval.Pending {
@@ -162,7 +162,7 @@ func FromAlertsStateToStoppedAlert(firingStates []StateTransition, appURL *url.U
 		}
 		postableAlert := StateToPostableAlert(transition.State, appURL)
 		postableAlert.EndsAt = strfmt.DateTime(ts)
-		alerts.PostableAlerts = append(alerts.PostableAlerts, *postableAlert)
+		alerts = append(alerts, postableAlert)
 	}
 	return alerts
 }

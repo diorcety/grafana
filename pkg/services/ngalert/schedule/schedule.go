@@ -363,7 +363,7 @@ func (sch *schedule) ruleRoutine(grafanaCtx context.Context, key ngmodels.AlertR
 
 	notify := func(states []state.StateTransition) {
 		expiredAlerts := state.FromAlertsStateToStoppedAlert(states, sch.appURL, sch.clock)
-		if len(expiredAlerts.PostableAlerts) > 0 {
+		if len(expiredAlerts) > 0 {
 			sch.alertsSender.Send(grafanaCtx, key, expiredAlerts)
 		}
 	}
@@ -459,9 +459,9 @@ func (sch *schedule) ruleRoutine(grafanaCtx context.Context, key ngmodels.AlertR
 		alerts := state.FromStateTransitionToPostableAlerts(processedStates, sch.stateManager, sch.appURL)
 		span.AddEvent("results processed", trace.WithAttributes(
 			attribute.Int64("state_transitions", int64(len(processedStates))),
-			attribute.Int64("alerts_to_send", int64(len(alerts.PostableAlerts))),
+			attribute.Int64("alerts_to_send", int64(len(alerts))),
 		))
-		if len(alerts.PostableAlerts) > 0 {
+		if len(alerts) > 0 {
 			sch.alertsSender.Send(ctx, key, alerts)
 		}
 		sendDuration.Observe(sch.clock.Now().Sub(start).Seconds())

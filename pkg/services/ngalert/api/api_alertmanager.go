@@ -294,6 +294,18 @@ func (srv AlertmanagerSrv) RoutePostAlertingConfig(c *contextmodel.ReqContext, b
 	return ErrResp(http.StatusInternalServerError, err, "")
 }
 
+func (srv AlertmanagerSrv) RoutePostAMAlerts(c *contextmodel.ReqContext, alerts apimodels.PostableAlerts) response.Response {
+	am, errResp := srv.AlertmanagerFor(c.SignedInUser.GetOrgID())
+	if errResp != nil {
+		return errResp
+	}
+
+	if err := am.PutAlerts(c.Req.Context(), alerts); err != nil {
+		return ErrResp(http.StatusInternalServerError, err, "")
+	}
+	return response.JSON(http.StatusOK, util.DynMap{"message": "alerts posted"})
+}
+
 func (srv AlertmanagerSrv) RouteGetReceivers(c *contextmodel.ReqContext) response.Response {
 	am, errResp := srv.AlertmanagerFor(c.SignedInUser.GetOrgID())
 	if errResp != nil {

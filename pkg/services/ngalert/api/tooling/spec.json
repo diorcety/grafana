@@ -76,6 +76,45 @@
             }
           }
         }
+      },
+      "post": {
+        "description": "create alertmanager alerts",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RoutePostGrafanaAMAlerts",
+        "parameters": [
+          {
+            "name": "PostableAlerts",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/postableAlert"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
       }
     },
     "/api/alertmanager/grafana/api/v2/alerts/groups": {
@@ -7944,7 +7983,6 @@
       }
     },
     "gettableAlert": {
-      "description": "GettableAlert gettable alert",
       "type": "object",
       "required": [
         "labels",
@@ -8058,7 +8096,6 @@
       "$ref": "#/definitions/gettableSilence"
     },
     "gettableSilences": {
-      "description": "GettableSilences gettable silences",
       "type": "array",
       "items": {
         "$ref": "#/definitions/gettableSilence"
@@ -8211,6 +8248,7 @@
       }
     },
     "postableSilence": {
+      "description": "PostableSilence postable silence",
       "type": "object",
       "required": [
         "comment",

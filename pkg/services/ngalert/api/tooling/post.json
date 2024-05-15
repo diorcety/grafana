@@ -4534,7 +4534,6 @@
    "type": "object"
   },
   "gettableAlert": {
-   "description": "GettableAlert gettable alert",
    "properties": {
     "annotations": {
      "$ref": "#/definitions/labelSet"
@@ -4645,7 +4644,6 @@
    "type": "object"
   },
   "gettableSilences": {
-   "description": "GettableSilences gettable silences",
    "items": {
     "$ref": "#/definitions/gettableSilence"
    },
@@ -4796,6 +4794,7 @@
    "type": "array"
   },
   "postableSilence": {
+   "description": "PostableSilence postable silence",
    "properties": {
     "comment": {
      "description": "comment",
@@ -5006,6 +5005,45 @@
       "description": "ValidationError",
       "schema": {
        "$ref": "#/definitions/ValidationError"
+      }
+     }
+    },
+    "tags": [
+     "alertmanager"
+    ]
+   },
+   "post": {
+    "description": "create alertmanager alerts",
+    "operationId": "RoutePostGrafanaAMAlerts",
+    "parameters": [
+     {
+      "in": "body",
+      "name": "PostableAlerts",
+      "schema": {
+       "items": {
+        "$ref": "#/definitions/postableAlert"
+       },
+       "type": "array"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Ack",
+      "schema": {
+       "$ref": "#/definitions/Ack"
+      }
+     },
+     "400": {
+      "description": "ValidationError",
+      "schema": {
+       "$ref": "#/definitions/ValidationError"
+      }
+     },
+     "404": {
+      "description": "NotFound",
+      "schema": {
+       "$ref": "#/definitions/NotFound"
       }
      }
     },

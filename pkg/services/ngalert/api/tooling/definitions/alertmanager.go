@@ -127,6 +127,15 @@ import (
 //       400: ValidationError
 //       404: NotFound
 
+// swagger:route POST /api/alertmanager/grafana/api/v2/alerts alertmanager RoutePostGrafanaAMAlerts
+//
+// create alertmanager alerts
+//
+//     Responses:
+//       200: Ack
+//       400: ValidationError
+//       404: NotFound
+
 // swagger:route GET /api/alertmanager/grafana/api/v2/alerts/groups alertmanager RouteGetGrafanaAMAlertGroups
 //
 // get alertmanager alerts
@@ -307,7 +316,7 @@ type TestTemplatesConfigParams struct {
 
 type TestTemplatesConfigBodyParams struct {
 	// Alerts to use as data when testing the template.
-	Alerts []*amv2.PostableAlert `json:"alerts"`
+	Alerts []*PostableAlert `json:"alerts"`
 
 	// Template string to test.
 	Template string `json:"template"`
@@ -461,6 +470,10 @@ type GettableAlerts = amv2.GettableAlerts
 // swagger:model gettableAlert
 type GettableAlert = amv2.GettableAlert
 
+type PostableAlert = amv2.PostableAlert
+
+type PostableAlerts = amv2.PostableAlerts
+
 // swagger:model alertGroups
 type AlertGroups = amv2.AlertGroups
 
@@ -511,8 +524,8 @@ type AlertsParams struct {
 	Receivers string `json:"receiver"`
 }
 
-// swagger:parameters RoutePostAMAlerts
-type PostableAlerts struct {
+// swagger:parameters RoutePostAMAlerts RoutePostGrafanaAMAlerts
+type PostableAlertsParam struct {
 	// in:body
 	PostableAlerts []amv2.PostableAlert `yaml:"" json:""`
 }

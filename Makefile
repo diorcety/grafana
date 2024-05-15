@@ -38,10 +38,10 @@ node_modules: package.json yarn.lock ## Install node modules.
 SPEC_TARGET = public/api-spec.json
 ENTERPRISE_SPEC_TARGET = public/api-enterprise-spec.json
 MERGED_SPEC_TARGET = public/api-merged.json
-NGALERT_SPEC_TARGET = pkg/services/ngalert/api/tooling/api.json
+NGALERT_SPEC_TARGET = pkg/services/ngalert/api/tooling/post.json
 
 $(NGALERT_SPEC_TARGET):
-	+$(MAKE) -C pkg/services/ngalert/api/tooling api.json
+	+$(MAKE) -C pkg/services/ngalert/api/tooling post.json
 
 $(MERGED_SPEC_TARGET): swagger-oss-gen swagger-enterprise-gen $(NGALERT_SPEC_TARGET) $(SWAGGER) ## Merge generated and ngalert API specs
 	# known conflicts DsPermissionType, AddApiKeyCommand, Json, Duration (identical models referenced by both specs)

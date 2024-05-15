@@ -290,7 +290,7 @@ func (d *AlertsRouter) buildExternalURL(ds *datasources.DataSource) (string, err
 
 func (d *AlertsRouter) Send(ctx context.Context, key models.AlertRuleKey, alerts definitions.PostableAlerts) {
 	logger := d.logger.New(key.LogContext()...)
-	if len(alerts.PostableAlerts) == 0 {
+	if len(alerts) == 0 {
 		logger.Info("No alerts to notify about")
 		return
 	}
@@ -300,12 +300,12 @@ func (d *AlertsRouter) Send(ctx context.Context, key models.AlertRuleKey, alerts
 	if d.sendAlertsTo[key.OrgID] == models.ExternalAlertmanagers && len(d.AlertmanagersFor(key.OrgID)) > 0 {
 		logger.Debug("All alerts for the given org should be routed to external notifiers only. skipping the internal notifier.")
 	} else {
-		logger.Info("Sending alerts to local notifier", "count", len(alerts.PostableAlerts))
+		logger.Info("Sending alerts to local notifier", "count", len(alerts))
 		n, err := d.multiOrgNotifier.AlertmanagerFor(key.OrgID)
 		if err == nil {
 			localNotifierExist = true
 			if err := n.PutAlerts(ctx, alerts); err != nil {
-				logger.Error("Failed to put alerts in the local notifier", "count", len(alerts.PostableAlerts), "error", err)
+				logger.Error("Failed to put alerts in the local notifier", "count", len(alerts), "error", err)
 			}
 		} else {
 			if errors.Is(err, notifier.ErrNoAlertmanagerForOrg) {
@@ -322,13 +322,13 @@ func (d *AlertsRouter) Send(ctx context.Context, key models.AlertRuleKey, alerts
 	defer d.adminConfigMtx.RUnlock()
 	s, ok := d.externalAlertmanagers[key.OrgID]
 	if ok && d.sendAlertsTo[key.OrgID] != models.InternalAlertmanager {
-		logger.Info("Sending alerts to external notifier", "count", len(alerts.PostableAlerts))
+		logger.Info("Sending alerts to external notifier", "count", len(alerts))
 		s.SendAlerts(alerts)
 		externalNotifierExist = true
 	}
 
 	if !localNotifierExist && !externalNotifierExist {
-		logger.Error("No external or internal notifier - alerts not delivered", "count", len(alerts.PostableAlerts))
+		logger.Error("No external or internal notifier - alerts not delivered", "count", len(alerts))
 	}
 }
 

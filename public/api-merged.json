@@ -2800,6 +2800,2024 @@
         }
       }
     },
+    "/api/alertmanager/grafana/api/v2/alerts": {
+      "get": {
+        "description": "get alertmanager alerts",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaAMAlerts",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show active alerts",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show silenced alerts",
+            "name": "silenced",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show inhibited alerts",
+            "name": "inhibited",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of matchers to filter alerts by",
+            "name": "filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A regex matching receivers to filter alerts by",
+            "name": "receiver",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "gettableAlerts",
+            "schema": {
+              "$ref": "#/definitions/gettableAlerts"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create alertmanager alerts",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RoutePostGrafanaAMAlerts",
+        "parameters": [
+          {
+            "name": "PostableAlerts",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/postableAlert"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/api/v2/alerts/groups": {
+      "get": {
+        "description": "get alertmanager alerts",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaAMAlertGroups",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show active alerts",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show silenced alerts",
+            "name": "silenced",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show inhibited alerts",
+            "name": "inhibited",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of matchers to filter alerts by",
+            "name": "filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A regex matching receivers to filter alerts by",
+            "name": "receiver",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "alertGroups",
+            "schema": {
+              "$ref": "#/definitions/alertGroups"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/api/v2/silence/{SilenceId}": {
+      "get": {
+        "description": "get silence",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaSilence",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SilenceId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "gettableSilence",
+            "schema": {
+              "$ref": "#/definitions/gettableSilence"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete silence",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteDeleteGrafanaSilence",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SilenceId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/api/v2/silences": {
+      "get": {
+        "description": "get silences",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaSilences",
+        "parameters": [
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "name": "filter",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "gettableSilences",
+            "schema": {
+              "$ref": "#/definitions/gettableSilences"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create silence",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteCreateGrafanaSilence",
+        "parameters": [
+          {
+            "name": "Silence",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/postableSilence"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "postSilencesOKBody",
+            "schema": {
+              "$ref": "#/definitions/postSilencesOKBody"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/api/v2/status": {
+      "get": {
+        "description": "get alertmanager status and configuration",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaAMStatus",
+        "responses": {
+          "200": {
+            "description": "GettableStatus",
+            "schema": {
+              "$ref": "#/definitions/GettableStatus"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/config/api/v1/alerts": {
+      "get": {
+        "description": "gets an Alerting config",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaAlertingConfig",
+        "responses": {
+          "200": {
+            "description": "GettableUserConfig",
+            "schema": {
+              "$ref": "#/definitions/GettableUserConfig"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "sets an Alerting config",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RoutePostGrafanaAlertingConfig",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PostableUserConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "deletes the Alerting config for a tenant",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteDeleteGrafanaAlertingConfig",
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/config/api/v1/receivers": {
+      "get": {
+        "description": "Get a list of all receivers",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaReceivers",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/receiversResponse"
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/config/api/v1/receivers/test": {
+      "post": {
+        "tags": [
+          "alertmanager"
+        ],
+        "summary": "Test Grafana managed receivers without saving them.",
+        "operationId": "RoutePostTestGrafanaReceivers",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/TestReceiversConfigBodyParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "207": {
+            "description": "MultiStatus",
+            "schema": {
+              "$ref": "#/definitions/MultiStatus"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "403": {
+            "description": "PermissionDenied",
+            "schema": {
+              "$ref": "#/definitions/PermissionDenied"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          },
+          "408": {
+            "description": "Failure",
+            "schema": {
+              "$ref": "#/definitions/Failure"
+            }
+          },
+          "409": {
+            "description": "AlertManagerNotReady",
+            "schema": {
+              "$ref": "#/definitions/AlertManagerNotReady"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/config/api/v1/templates/test": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "alertmanager"
+        ],
+        "summary": "Test Grafana managed templates without saving them.",
+        "operationId": "RoutePostTestGrafanaTemplates",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/TestTemplatesConfigBodyParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TestTemplatesResults",
+            "schema": {
+              "$ref": "#/definitions/TestTemplatesResults"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "403": {
+            "description": "PermissionDenied",
+            "schema": {
+              "$ref": "#/definitions/PermissionDenied"
+            }
+          },
+          "409": {
+            "description": "AlertManagerNotReady",
+            "schema": {
+              "$ref": "#/definitions/AlertManagerNotReady"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/config/history": {
+      "get": {
+        "description": "gets Alerting configurations that were successfully applied in the past",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetGrafanaAlertingConfigHistory",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Limit response to n historic configurations.",
+            "name": "limit",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GettableHistoricUserConfigs"
+          }
+        }
+      }
+    },
+    "/api/alertmanager/grafana/config/history/{id}/_activate": {
+      "post": {
+        "description": "revert Alerting configuration to the historical configuration specified by the given id",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RoutePostGrafanaAlertingConfigHistoryActivate",
+        "parameters": [
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Id should be the id of the GettableHistoricUserConfig",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/{DatasourceUID}/api/v2/alerts": {
+      "get": {
+        "description": "get alertmanager alerts",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetAMAlerts",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show active alerts",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show silenced alerts",
+            "name": "silenced",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show inhibited alerts",
+            "name": "inhibited",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of matchers to filter alerts by",
+            "name": "filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A regex matching receivers to filter alerts by",
+            "name": "receiver",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "gettableAlerts",
+            "schema": {
+              "$ref": "#/definitions/gettableAlerts"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create alertmanager alerts",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RoutePostAMAlerts",
+        "parameters": [
+          {
+            "name": "PostableAlerts",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/postableAlert"
+              }
+            }
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/{DatasourceUID}/api/v2/alerts/groups": {
+      "get": {
+        "description": "get alertmanager alerts",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetAMAlertGroups",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show active alerts",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show silenced alerts",
+            "name": "silenced",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "default": true,
+            "description": "Show inhibited alerts",
+            "name": "inhibited",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of matchers to filter alerts by",
+            "name": "filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "A regex matching receivers to filter alerts by",
+            "name": "receiver",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "alertGroups",
+            "schema": {
+              "$ref": "#/definitions/alertGroups"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/{DatasourceUID}/api/v2/silence/{SilenceId}": {
+      "get": {
+        "description": "get silence",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetSilence",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SilenceId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "gettableSilence",
+            "schema": {
+              "$ref": "#/definitions/gettableSilence"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "delete silence",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteDeleteSilence",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "SilenceId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/{DatasourceUID}/api/v2/silences": {
+      "get": {
+        "description": "get silences",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetSilences",
+        "parameters": [
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "name": "filter",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "gettableSilences",
+            "schema": {
+              "$ref": "#/definitions/gettableSilences"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "create silence",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteCreateSilence",
+        "parameters": [
+          {
+            "name": "Silence",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/postableSilence"
+            }
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "postSilencesOKBody",
+            "schema": {
+              "$ref": "#/definitions/postSilencesOKBody"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/{DatasourceUID}/api/v2/status": {
+      "get": {
+        "description": "get alertmanager status and configuration",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetAMStatus",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GettableStatus",
+            "schema": {
+              "$ref": "#/definitions/GettableStatus"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/alertmanager/{DatasourceUID}/config/api/v1/alerts": {
+      "get": {
+        "description": "gets an Alerting config",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteGetAlertingConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GettableUserConfig",
+            "schema": {
+              "$ref": "#/definitions/GettableUserConfig"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "sets an Alerting config",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RoutePostAlertingConfig",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PostableUserConfig"
+            }
+          },
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "deletes the Alerting config for a tenant",
+        "tags": [
+          "alertmanager"
+        ],
+        "operationId": "RouteDeleteAlertingConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/prometheus/grafana/api/v1/alerts": {
+      "get": {
+        "description": "gets the current alerts",
+        "tags": [
+          "prometheus"
+        ],
+        "operationId": "RouteGetGrafanaAlertStatuses",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "Include Grafana specific labels as part of the response.",
+            "name": "includeInternalLabels",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AlertResponse",
+            "schema": {
+              "$ref": "#/definitions/AlertResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/prometheus/grafana/api/v1/rules": {
+      "get": {
+        "description": "gets the evaluation statuses of all rules",
+        "tags": [
+          "prometheus"
+        ],
+        "operationId": "RouteGetGrafanaRuleStatuses",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "Include Grafana specific labels as part of the response.",
+            "name": "includeInternalLabels",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Filter the list of rules to those that belong to the specified dashboard UID.",
+            "name": "DashboardUID",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Filter the list of rules to those that belong to the specified panel ID. Dashboard UID must be specified.",
+            "name": "PanelID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RuleResponse",
+            "schema": {
+              "$ref": "#/definitions/RuleResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/prometheus/{DatasourceUID}/api/v1/alerts": {
+      "get": {
+        "description": "gets the current alerts",
+        "tags": [
+          "prometheus"
+        ],
+        "operationId": "RouteGetAlertStatuses",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AlertResponse",
+            "schema": {
+              "$ref": "#/definitions/AlertResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/prometheus/{DatasourceUID}/api/v1/rules": {
+      "get": {
+        "description": "gets the evaluation statuses of all rules",
+        "tags": [
+          "prometheus"
+        ],
+        "operationId": "RouteGetRuleStatuses",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "RuleResponse",
+            "schema": {
+              "$ref": "#/definitions/RuleResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/ruler/grafana/api/v1/export/rules": {
+      "get": {
+        "description": "List rules in provisioning format",
+        "consumes": [
+          "application/json",
+          "application/yaml"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteGetRulesForExport",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to initiate a download of the file or not.",
+            "name": "download",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "yaml",
+            "description": "Format of the downloaded file, either yaml or json. Accept header can also be used, but the query parameter will take precedence.",
+            "name": "format",
+            "in": "query"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "UIDs of folders from which to export rules",
+            "name": "folderUid",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Name of group of rules to export. Must be specified only together with a single folder UID",
+            "name": "group",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "UID of alert rule to export. If specified, parameters folderUid and group must be empty.",
+            "name": "ruleUid",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AlertingFileExport",
+            "schema": {
+              "$ref": "#/definitions/AlertingFileExport"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": " Not found."
+          }
+        }
+      }
+    },
+    "/api/ruler/grafana/api/v1/rules": {
+      "get": {
+        "description": "List rule groups",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteGetGrafanaRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "DashboardUID",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "PanelID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "NamespaceConfigResponse",
+            "schema": {
+              "$ref": "#/definitions/NamespaceConfigResponse"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          }
+        }
+      }
+    },
+    "/api/ruler/grafana/api/v1/rules/{Namespace}": {
+      "get": {
+        "description": "Get rule groups by namespace",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteGetNamespaceGrafanaRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "NamespaceConfigResponse",
+            "schema": {
+              "$ref": "#/definitions/NamespaceConfigResponse"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates or updates a rule group",
+        "consumes": [
+          "application/json",
+          "application/yaml"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RoutePostNameGrafanaRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PostableRuleGroupConfig"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "UpdateRuleGroupResponse",
+            "schema": {
+              "$ref": "#/definitions/UpdateRuleGroupResponse"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete namespace",
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteDeleteNamespaceGrafanaRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          }
+        }
+      }
+    },
+    "/api/ruler/grafana/api/v1/rules/{Namespace}/export": {
+      "post": {
+        "description": "Converts submitted rule group to provisioning format",
+        "consumes": [
+          "application/json",
+          "application/yaml"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RoutePostRulesGroupForExport",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PostableRuleGroupConfig"
+            }
+          },
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether to initiate a download of the file or not.",
+            "name": "download",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "default": "yaml",
+            "description": "Format of the downloaded file, either yaml or json. Accept header can also be used, but the query parameter will take precedence.",
+            "name": "format",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "AlertingFileExport",
+            "schema": {
+              "$ref": "#/definitions/AlertingFileExport"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": " Not found."
+          }
+        }
+      }
+    },
+    "/api/ruler/grafana/api/v1/rules/{Namespace}/{Groupname}": {
+      "get": {
+        "description": "Get rule group",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteGetGrafanaRuleGroupConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Groupname",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "RuleGroupConfigResponse",
+            "schema": {
+              "$ref": "#/definitions/RuleGroupConfigResponse"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete rule group",
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteDeleteGrafanaRuleGroupConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Groupname",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          }
+        }
+      }
+    },
+    "/api/ruler/{DatasourceUID}/api/v1/rules": {
+      "get": {
+        "description": "List rule groups",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteGetRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "DashboardUID",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "name": "PanelID",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "NamespaceConfigResponse",
+            "schema": {
+              "$ref": "#/definitions/NamespaceConfigResponse"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/ruler/{DatasourceUID}/api/v1/rules/{Namespace}": {
+      "get": {
+        "description": "Get rule groups by namespace",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteGetNamespaceRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "NamespaceConfigResponse",
+            "schema": {
+              "$ref": "#/definitions/NamespaceConfigResponse"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates or updates a rule group",
+        "consumes": [
+          "application/json",
+          "application/yaml"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RoutePostNameRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PostableRuleGroupConfig"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete namespace",
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteDeleteNamespaceRulesConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/ruler/{DatasourceUID}/api/v1/rules/{Namespace}/{Groupname}": {
+      "get": {
+        "description": "Get rule group",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteGetRulegGroupConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Groupname",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "RuleGroupConfigResponse",
+            "schema": {
+              "$ref": "#/definitions/RuleGroupConfigResponse"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete rule group",
+        "tags": [
+          "ruler"
+        ],
+        "operationId": "RouteDeleteRuleGroupConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Namespace",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "Groupname",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "403": {
+            "description": "ForbiddenError",
+            "schema": {
+              "$ref": "#/definitions/ForbiddenError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/eval": {
+      "post": {
+        "description": "Test rule",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "testing"
+        ],
+        "operationId": "RouteEvalQueries",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/EvalQueriesPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "EvalQueriesResponse",
+            "schema": {
+              "$ref": "#/definitions/EvalQueriesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ngalert": {
+      "get": {
+        "description": "Get the status of the alerting engine",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "configuration"
+        ],
+        "operationId": "RouteGetStatus",
+        "responses": {
+          "200": {
+            "description": "AlertingStatus",
+            "schema": {
+              "$ref": "#/definitions/AlertingStatus"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ngalert/admin_config": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "configuration"
+        ],
+        "summary": "Get the NGalert configuration of the user's organization, returns 404 if no configuration is present.",
+        "operationId": "RouteGetNGalertConfig",
+        "responses": {
+          "200": {
+            "description": "GettableNGalertConfig",
+            "schema": {
+              "$ref": "#/definitions/GettableNGalertConfig"
+            }
+          },
+          "404": {
+            "description": "Failure",
+            "schema": {
+              "$ref": "#/definitions/Failure"
+            }
+          },
+          "500": {
+            "description": "Failure",
+            "schema": {
+              "$ref": "#/definitions/Failure"
+            }
+          }
+        }
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "configuration"
+        ],
+        "summary": "Creates or updates the NGalert configuration of the user's organization. If no value is sent for alertmanagersChoice, it defaults to \"all\".",
+        "operationId": "RoutePostNGalertConfig",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PostableNGalertConfig"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "tags": [
+          "configuration"
+        ],
+        "summary": "Deletes the NGalert configuration of the user's organization.",
+        "operationId": "RouteDeleteNGalertConfig",
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
+          },
+          "500": {
+            "description": "Failure",
+            "schema": {
+              "$ref": "#/definitions/Failure"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ngalert/alertmanagers": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "configuration"
+        ],
+        "summary": "Get the discovered and dropped Alertmanagers of the user's organization based on the specified configuration.",
+        "operationId": "RouteGetAlertmanagers",
+        "responses": {
+          "200": {
+            "description": "GettableAlertmanagers",
+            "schema": {
+              "$ref": "#/definitions/GettableAlertmanagers"
+            }
+          }
+        }
+      }
+    },
     "/api/v1/provisioning/alert-rules": {
       "get": {
         "tags": [
@@ -3826,6 +5844,356 @@
         "responses": {
           "204": {
             "description": " The template was deleted successfully."
+          }
+        }
+      }
+    },
+    "/api/v1/rule/backtest": {
+      "post": {
+        "description": "Test rule",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "testing"
+        ],
+        "operationId": "BacktestConfig",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/BacktestConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "BacktestResult",
+            "schema": {
+              "$ref": "#/definitions/BacktestResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rule/test/grafana": {
+      "post": {
+        "description": "Test a rule against Grafana ruler",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "testing"
+        ],
+        "operationId": "RouteTestRuleGrafanaConfig",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/PostableExtendedRuleNodeExtended"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/TestGrafanaRuleResponse"
+          },
+          "400": {
+            "description": "ValidationError",
+            "schema": {
+              "$ref": "#/definitions/ValidationError"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rule/test/{DatasourceUID}": {
+      "post": {
+        "description": "Test a rule against external data source ruler",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "testing"
+        ],
+        "operationId": "RouteTestRuleConfig",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "DatasoureUID should be the datasource UID identifier",
+            "name": "DatasourceUID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/TestRulePayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TestRuleResponse",
+            "schema": {
+              "$ref": "#/definitions/TestRuleResponse"
+            }
+          },
+          "404": {
+            "description": "NotFound",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/rules/history": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "history"
+        ],
+        "summary": "Query state history.",
+        "operationId": "RouteGetStateHistory",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/StateHistory"
+          }
+        }
+      }
+    },
+    "/api/v1/upgrade/channels": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Upgrade all legacy notification channels for the current organization.",
+        "operationId": "RoutePostUpgradeAllChannels",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, legacy alert and notification channel upgrades from previous runs will be skipped. Otherwise, they will be replaced.",
+            "name": "SkipExisting",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OrgMigrationSummary",
+            "schema": {
+              "$ref": "#/definitions/OrgMigrationSummary"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/upgrade/channels/{ChannelID}": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Upgrade a single legacy notification channel for the current organization.",
+        "operationId": "RoutePostUpgradeChannel",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Channel ID of legacy notification channel.",
+            "name": "ChannelID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OrgMigrationSummary",
+            "schema": {
+              "$ref": "#/definitions/OrgMigrationSummary"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/upgrade/dashboards": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Upgrade all legacy dashboard alerts for the current organization.",
+        "operationId": "RoutePostUpgradeAllDashboards",
+        "responses": {
+          "200": {
+            "description": "OrgMigrationSummary",
+            "schema": {
+              "$ref": "#/definitions/OrgMigrationSummary"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/upgrade/dashboards/{DashboardID}": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Upgrade all legacy dashboard alerts on a dashboard for the current organization.",
+        "operationId": "RoutePostUpgradeDashboard",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, legacy alert and notification channel upgrades from previous runs will be skipped. Otherwise, they will be replaced.",
+            "name": "SkipExisting",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Dashboard ID of dashboard alert.",
+            "name": "DashboardID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OrgMigrationSummary",
+            "schema": {
+              "$ref": "#/definitions/OrgMigrationSummary"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/upgrade/dashboards/{DashboardID}/panels/{PanelID}": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Upgrade single legacy dashboard alert for the current organization.",
+        "operationId": "RoutePostUpgradeAlert",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Dashboard ID of dashboard alert.",
+            "name": "DashboardID",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Panel ID of dashboard alert.",
+            "name": "PanelID",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OrgMigrationSummary",
+            "schema": {
+              "$ref": "#/definitions/OrgMigrationSummary"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/upgrade/org": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Get existing alerting upgrade for the current organization.",
+        "operationId": "RouteGetOrgUpgrade",
+        "responses": {
+          "200": {
+            "description": "OrgMigrationState",
+            "schema": {
+              "$ref": "#/definitions/OrgMigrationState"
+            }
+          }
+        }
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Upgrade all legacy alerts for the current organization.",
+        "operationId": "RoutePostUpgradeOrg",
+        "parameters": [
+          {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, legacy alert and notification channel upgrades from previous runs will be skipped. Otherwise, they will be replaced.",
+            "name": "SkipExisting",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OrgMigrationSummary",
+            "schema": {
+              "$ref": "#/definitions/OrgMigrationSummary"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "upgrade"
+        ],
+        "summary": "Delete existing alerting upgrade for the current organization.",
+        "operationId": "RouteDeleteOrgUpgrade",
+        "responses": {
+          "200": {
+            "description": "Ack",
+            "schema": {
+              "$ref": "#/definitions/Ack"
+            }
           }
         }
       }
@@ -21352,6 +23720,7 @@
       }
     },
     "alertGroup": {
+      "description": "AlertGroup alert group",
       "type": "object",
       "required": [
         "alerts",
@@ -21508,7 +23877,6 @@
       }
     },
     "gettableAlert": {
-      "description": "GettableAlert gettable alert",
       "type": "object",
       "required": [
         "labels",
@@ -21570,6 +23938,7 @@
       }
     },
     "gettableSilence": {
+      "description": "GettableSilence gettable silence",
       "type": "object",
       "required": [
         "comment",
@@ -21768,6 +24137,7 @@
       }
     },
     "postableSilence": {
+      "description": "PostableSilence postable silence",
       "type": "object",
       "required": [
         "comment",
@@ -21833,6 +24203,7 @@
       }
     },
     "receiver": {
+      "description": "Receiver receiver",
       "type": "object",
       "required": [
         "active",
