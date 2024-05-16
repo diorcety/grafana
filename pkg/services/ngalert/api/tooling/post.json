@@ -856,23 +856,23 @@
     "type": {
      "enum": [
       "alertmanager",
-      " dingding",
-      " discord",
-      " email",
-      " googlechat",
-      " kafka",
-      " line",
-      " opsgenie",
-      " pagerduty",
-      " pushover",
-      " sensugo",
-      " slack",
-      " teams",
-      " telegram",
-      " threema",
-      " victorops",
-      " webhook",
-      " wecom"
+      "dingding",
+      "discord",
+      "email",
+      "googlechat",
+      "kafka",
+      "line",
+      "opsgenie",
+      "pagerduty",
+      "pushover",
+      "sensugo",
+      "slack",
+      "teams",
+      "telegram",
+      "threema",
+      "victorops",
+      "webhook",
+      "wecom"
      ],
      "example": "webhook",
      "type": "string"
@@ -971,7 +971,9 @@
    },
    "type": "object"
   },
-  "EvalQueriesResponse": {},
+  "EvalQueriesResponse": {
+   "type": "object"
+  },
   "ExplorePanelsState": {
    "description": "This is an object constructed with the keys as the values of the enum VisType and the value being a bag of properties"
   },
@@ -4455,7 +4457,9 @@
     "state": {
      "description": "state",
      "enum": [
-      "[unprocessed active suppressed]"
+      "unprocessed",
+      "active",
+      "suppressed"
      ],
      "type": "string"
     }
@@ -4523,7 +4527,9 @@
     "status": {
      "description": "status",
      "enum": [
-      "[ready settling disabled]"
+      "ready",
+      "settling",
+      "disabled"
      ],
      "type": "string"
     }
@@ -4534,6 +4540,7 @@
    "type": "object"
   },
   "gettableAlert": {
+   "description": "GettableAlert gettable alert",
    "properties": {
     "annotations": {
      "$ref": "#/definitions/labelSet"
@@ -4589,6 +4596,7 @@
    "type": "object"
   },
   "gettableAlerts": {
+   "description": "GettableAlerts gettable alerts",
    "items": {
     "$ref": "#/definitions/gettableAlert"
    },
@@ -4644,6 +4652,7 @@
    "type": "object"
   },
   "gettableSilences": {
+   "description": "GettableSilences gettable silences",
    "items": {
     "$ref": "#/definitions/gettableSilence"
    },
@@ -4851,8 +4860,6 @@
     }
    },
    "required": [
-    "active",
-    "integrations",
     "name"
    ],
    "type": "object"
@@ -4897,7 +4904,9 @@
     "state": {
      "description": "state",
      "enum": [
-      "[expired active pending]"
+      "expired",
+      "active",
+      "pending"
      ],
      "type": "string"
     }

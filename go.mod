@@ -494,7 +494,7 @@ replace xorm.io/xorm => ./pkg/util/xorm
 
 // Use our fork of the upstream alertmanagers.
 // This is required in order to get notification delivery errors from the receivers API.
-replace github.com/prometheus/alertmanager => github.com/grafana/prometheus-alertmanager v0.25.1-0.20231027171310-70c52bf65758
+replace github.com/prometheus/alertmanager => github.com/diorcety/prometheus-alertmanager v0.0.0-20240516083119-d2026b79c6fd
 
 replace github.com/grafana/alerting => github.com/diorcety/alerting v0.0.0-20240315153251-c8ed69f756db
 

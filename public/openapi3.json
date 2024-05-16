@@ -2614,7 +2614,7 @@
             "type": "string"
           },
           "model": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "type": "object"
           },
           "queryType": {
@@ -3754,15 +3754,15 @@
       "CookiePreferences": {
         "properties": {
           "analytics": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "type": "object"
           },
           "functional": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "type": "object"
           },
           "performance": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "type": "object"
           }
         },
@@ -3824,7 +3824,7 @@
             "type": "string"
           },
           "target": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "description": "Target data query",
             "example": {
               "prop1": "value1",
@@ -3857,7 +3857,7 @@
             "type": "string"
           },
           "target": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "description": "Target data query",
             "example": {
               "prop1": "value1",
@@ -4933,23 +4933,23 @@
           "type": {
             "enum": [
               "alertmanager",
-              " dingding",
-              " discord",
-              " email",
-              " googlechat",
-              " kafka",
-              " line",
-              " opsgenie",
-              " pagerduty",
-              " pushover",
-              " sensugo",
-              " slack",
-              " teams",
-              " telegram",
-              " threema",
-              " victorops",
-              " webhook",
-              " wecom"
+              "dingding",
+              "discord",
+              "email",
+              "googlechat",
+              "kafka",
+              "line",
+              "opsgenie",
+              "pagerduty",
+              "pushover",
+              "sensugo",
+              "slack",
+              "teams",
+              "telegram",
+              "threema",
+              "victorops",
+              "webhook",
+              "wecom"
             ],
             "example": "webhook",
             "type": "string"
@@ -5085,7 +5085,9 @@
         },
         "type": "object"
       },
-      "EvalQueriesResponse": {},
+      "EvalQueriesResponse": {
+        "type": "object"
+      },
       "ExplorePanelsState": {
         "description": "This is an object constructed with the keys as the values of the enum VisType and the value being a bag of properties"
       },
@@ -5181,12 +5183,12 @@
       "FieldConfig": {
         "properties": {
           "color": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "description": "Map values to a display color\nNOTE: this interface is under development in the frontend... so simple map for now",
             "type": "object"
           },
           "custom": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "description": "Panel Specific Values",
             "type": "object"
           },
@@ -8540,7 +8542,7 @@
         "description": "PublicError is derived from Error and only contains information\navailable to the end user.",
         "properties": {
           "extra": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "type": "object"
           },
           "message": {
@@ -8721,12 +8723,12 @@
         "description": "The embedded FieldConfig's display name must be set.\nIt corresponds to the QueryResultMetaStat on the frontend (https://github.com/grafana/grafana/blob/master/packages/grafana-data/src/types/data.ts#L53).",
         "properties": {
           "color": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "description": "Map values to a display color\nNOTE: this interface is under development in the frontend... so simple map for now",
             "type": "object"
           },
           "custom": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "description": "Panel Specific Values",
             "type": "object"
           },
@@ -8964,7 +8966,7 @@
           },
           "queries": {
             "items": {
-              "additionalProperties": false,
+              "additionalProperties": {},
               "type": "object"
             },
             "type": "array"
@@ -9689,7 +9691,7 @@
             "type": "string"
           },
           "settings": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "type": "object"
           },
           "source": {
@@ -11949,7 +11951,9 @@
           "state": {
             "description": "state",
             "enum": [
-              "[unprocessed active suppressed]"
+              "unprocessed",
+              "active",
+              "suppressed"
             ],
             "type": "string"
           }
@@ -12017,7 +12021,9 @@
           "status": {
             "description": "status",
             "enum": [
-              "[ready settling disabled]"
+              "ready",
+              "settling",
+              "disabled"
             ],
             "type": "string"
           }
@@ -12056,6 +12062,7 @@
         "type": "object"
       },
       "gettableAlert": {
+        "description": "GettableAlert gettable alert",
         "properties": {
           "annotations": {
             "$ref": "#/components/schemas/labelSet"
@@ -12111,6 +12118,7 @@
         "type": "object"
       },
       "gettableAlerts": {
+        "description": "GettableAlerts gettable alerts",
         "items": {
           "$ref": "#/components/schemas/gettableAlert"
         },
@@ -12166,6 +12174,7 @@
         "type": "object"
       },
       "gettableSilences": {
+        "description": "GettableSilences gettable silences",
         "items": {
           "$ref": "#/components/schemas/gettableSilence"
         },
@@ -12357,7 +12366,7 @@
         "description": "PublicError is derived from Error and only contains information\navailable to the end user.",
         "properties": {
           "extra": {
-            "additionalProperties": false,
+            "additionalProperties": {},
             "description": "Extra Additional information about the error",
             "type": "object"
           },
@@ -12401,8 +12410,6 @@
           }
         },
         "required": [
-          "active",
-          "integrations",
           "name"
         ],
         "type": "object"
@@ -12519,7 +12526,9 @@
           "state": {
             "description": "state",
             "enum": [
-              "[expired active pending]"
+              "expired",
+              "active",
+              "pending"
             ],
             "type": "string"
           }

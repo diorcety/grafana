@@ -14436,7 +14436,7 @@
         },
         "model": {
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "queryType": {
           "type": "string"
@@ -15576,15 +15576,15 @@
       "properties": {
         "analytics": {
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "functional": {
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "performance": {
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         }
       }
     },
@@ -15651,7 +15651,7 @@
         "target": {
           "description": "Target data query",
           "type": "object",
-          "additionalProperties": false,
+          "additionalProperties": {},
           "example": {
             "prop1": "value1",
             "prop2": "value"
@@ -15679,7 +15679,7 @@
         "target": {
           "description": "Target data query",
           "type": "object",
-          "additionalProperties": false,
+          "additionalProperties": {},
           "example": {
             "prop1": "value1",
             "prop2": "value"
@@ -16758,23 +16758,23 @@
           "type": "string",
           "enum": [
             "alertmanager",
-            " dingding",
-            " discord",
-            " email",
-            " googlechat",
-            " kafka",
-            " line",
-            " opsgenie",
-            " pagerduty",
-            " pushover",
-            " sensugo",
-            " slack",
-            " teams",
-            " telegram",
-            " threema",
-            " victorops",
-            " webhook",
-            " wecom"
+            "dingding",
+            "discord",
+            "email",
+            "googlechat",
+            "kafka",
+            "line",
+            "opsgenie",
+            "pagerduty",
+            "pushover",
+            "sensugo",
+            "slack",
+            "teams",
+            "telegram",
+            "threema",
+            "victorops",
+            "webhook",
+            "wecom"
           ],
           "example": "webhook"
         },
@@ -16904,7 +16904,9 @@
         }
       }
     },
-    "EvalQueriesResponse": {},
+    "EvalQueriesResponse": {
+      "type": "object"
+    },
     "ExplorePanelsState": {
       "description": "This is an object constructed with the keys as the values of the enum VisType and the value being a bag of properties"
     },
@@ -17004,12 +17006,12 @@
         "color": {
           "description": "Map values to a display color\nNOTE: this interface is under development in the frontend... so simple map for now",
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "custom": {
           "description": "Panel Specific Values",
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "decimals": {
           "type": "integer",
@@ -20362,7 +20364,7 @@
       "properties": {
         "extra": {
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "message": {
           "type": "string"
@@ -20545,12 +20547,12 @@
         "color": {
           "description": "Map values to a display color\nNOTE: this interface is under development in the frontend... so simple map for now",
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "custom": {
           "description": "Panel Specific Values",
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "decimals": {
           "type": "integer",
@@ -20787,7 +20789,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "additionalProperties": false
+            "additionalProperties": {}
           }
         },
         "range": {
@@ -21511,7 +21513,7 @@
         },
         "settings": {
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "source": {
           "$ref": "#/definitions/SettingsSource"
@@ -23777,7 +23779,9 @@
           "description": "state",
           "type": "string",
           "enum": [
-            "[unprocessed active suppressed]"
+            "unprocessed",
+            "active",
+            "suppressed"
           ]
         }
       }
@@ -23843,7 +23847,9 @@
           "description": "status",
           "type": "string",
           "enum": [
-            "[ready settling disabled]"
+            "ready",
+            "settling",
+            "disabled"
           ]
         }
       }
@@ -23877,6 +23883,7 @@
       }
     },
     "gettableAlert": {
+      "description": "GettableAlert gettable alert",
       "type": "object",
       "required": [
         "labels",
@@ -23932,6 +23939,7 @@
       }
     },
     "gettableAlerts": {
+      "description": "GettableAlerts gettable alerts",
       "type": "array",
       "items": {
         "$ref": "#/definitions/gettableAlert"
@@ -23987,6 +23995,7 @@
       }
     },
     "gettableSilences": {
+      "description": "GettableSilences gettable silences",
       "type": "array",
       "items": {
         "$ref": "#/definitions/gettableSilence"
@@ -24185,7 +24194,7 @@
         "extra": {
           "description": "Extra Additional information about the error",
           "type": "object",
-          "additionalProperties": false
+          "additionalProperties": {}
         },
         "message": {
           "description": "Message A human readable message",
@@ -24206,8 +24215,6 @@
       "description": "Receiver receiver",
       "type": "object",
       "required": [
-        "active",
-        "integrations",
         "name"
       ],
       "properties": {
@@ -24345,7 +24352,9 @@
           "description": "state",
           "type": "string",
           "enum": [
-            "[expired active pending]"
+            "expired",
+            "active",
+            "pending"
           ]
         }
       }

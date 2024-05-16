@@ -4306,23 +4306,23 @@
           "type": "string",
           "enum": [
             "alertmanager",
-            " dingding",
-            " discord",
-            " email",
-            " googlechat",
-            " kafka",
-            " line",
-            " opsgenie",
-            " pagerduty",
-            " pushover",
-            " sensugo",
-            " slack",
-            " teams",
-            " telegram",
-            " threema",
-            " victorops",
-            " webhook",
-            " wecom"
+            "dingding",
+            "discord",
+            "email",
+            "googlechat",
+            "kafka",
+            "line",
+            "opsgenie",
+            "pagerduty",
+            "pushover",
+            "sensugo",
+            "slack",
+            "teams",
+            "telegram",
+            "threema",
+            "victorops",
+            "webhook",
+            "wecom"
           ],
           "example": "webhook"
         },
@@ -4416,7 +4416,7 @@
       }
     },
     "EvalQueriesResponse": {
-      "$ref": "#/definitions/EvalQueriesResponse"
+      "type": "object"
     },
     "ExplorePanelsState": {
       "description": "This is an object constructed with the keys as the values of the enum VisType and the value being a bag of properties"
@@ -7873,16 +7873,14 @@
         "receiver": {
           "$ref": "#/definitions/receiver"
         }
-      },
-      "$ref": "#/definitions/alertGroup"
+      }
     },
     "alertGroups": {
       "description": "AlertGroups alert groups",
       "type": "array",
       "items": {
         "$ref": "#/definitions/alertGroup"
-      },
-      "$ref": "#/definitions/alertGroups"
+      }
     },
     "alertStatus": {
       "description": "AlertStatus alert status",
@@ -7911,7 +7909,9 @@
           "description": "state",
           "type": "string",
           "enum": [
-            "[unprocessed active suppressed]"
+            "unprocessed",
+            "active",
+            "suppressed"
           ]
         }
       }
@@ -7977,12 +7977,15 @@
           "description": "status",
           "type": "string",
           "enum": [
-            "[ready settling disabled]"
+            "ready",
+            "settling",
+            "disabled"
           ]
         }
       }
     },
     "gettableAlert": {
+      "description": "GettableAlert gettable alert",
       "type": "object",
       "required": [
         "labels",
@@ -8035,15 +8038,14 @@
           "type": "string",
           "format": "date-time"
         }
-      },
-      "$ref": "#/definitions/gettableAlert"
+      }
     },
     "gettableAlerts": {
+      "description": "GettableAlerts gettable alerts",
       "type": "array",
       "items": {
         "$ref": "#/definitions/gettableAlert"
-      },
-      "$ref": "#/definitions/gettableAlerts"
+      }
     },
     "gettableSilence": {
       "description": "GettableSilence gettable silence",
@@ -8092,15 +8094,14 @@
           "type": "string",
           "format": "date-time"
         }
-      },
-      "$ref": "#/definitions/gettableSilence"
+      }
     },
     "gettableSilences": {
+      "description": "GettableSilences gettable silences",
       "type": "array",
       "items": {
         "$ref": "#/definitions/gettableSilence"
-      },
-      "$ref": "#/definitions/gettableSilences"
+      }
     },
     "integration": {
       "description": "Integration integration",
@@ -8131,8 +8132,7 @@
           "description": "send resolved",
           "type": "boolean"
         }
-      },
-      "$ref": "#/definitions/integration"
+      }
     },
     "labelSet": {
       "description": "LabelSet label set",
@@ -8283,15 +8283,12 @@
           "type": "string",
           "format": "date-time"
         }
-      },
-      "$ref": "#/definitions/postableSilence"
+      }
     },
     "receiver": {
       "description": "Receiver receiver",
       "type": "object",
       "required": [
-        "active",
-        "integrations",
         "name"
       ],
       "properties": {
@@ -8310,8 +8307,7 @@
           "description": "name",
           "type": "string"
         }
-      },
-      "$ref": "#/definitions/receiver"
+      }
     },
     "silence": {
       "description": "Silence silence",
@@ -8358,7 +8354,9 @@
           "description": "state",
           "type": "string",
           "enum": [
-            "[expired active pending]"
+            "expired",
+            "active",
+            "pending"
           ]
         }
       }
